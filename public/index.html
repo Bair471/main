@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes app</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Notes app</h1>
+        <div id="notes"></div>
+
+        <input type="text" id="note-title" placeholder="Note title" value="xxx">
+        <textarea id="note-body" placeholder="Note description"></textarea>
+        <button onclick="createNote(this)">Save note</button>
+    </div>
+
+    <script>
+        function createNote(event) {
+            console.log('createNote function called');
+
+            const input1 = document.getElementById('note-title');
+            const input2 = document.getElementById('note-body');
+
+            fetch("http://localhost:4000/create", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    noteTitle10: input1.value,
+                    noteBody20: input2.value,
+                })
+            })
+                .then(response => response.text())
+                .then(result => console.log(`Tochno? ${result}`))
+                .catch(error => console.log('error', error));
+        }
+    </script>
+</body>
+</html>
+
+
+
