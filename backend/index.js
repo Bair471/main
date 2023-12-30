@@ -1,8 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const cors = require('cors');
+const { connectTodb, getDb } = require('./db');
+const ObjectId = require('mongodb').ObjectId;
 const app = express();
-const port = 6000;
+const port = 8080;
+app.use(express.json());
+app.use(cors());
 
 // Middleware to parse JSON in request bodies
 app.use(bodyParser.json());
@@ -22,6 +26,25 @@ app.post('/tasks', (req, res) => {
     res.json(newTask);
 });
 
+app.post('/info', (req, res) => {
+    const { information } = req.body;
+    console.log(information);
+    connectTodb((err) => {
+        if(!err) {
+            // app.listen(PORT, (err) => {
+            //     err? console.log(err) : console.log(`listening port ${PORT}`);
+            // });
+            db = getDb();
+            const collection = db.collection(`data`)
+            insert(collection, req.body);
+            // getAll(data)
+            // updateBike(data, '65900fc283af9b00630af811');
+        } else {
+            console.log(`DB connection error: ${err}`);
+        }
+    });
+    res.json(`ok`)
+})
 function insert (collection, bike) {
     
       // Insert the bike record
