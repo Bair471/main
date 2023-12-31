@@ -12,11 +12,11 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // In-memory data store (replace with a database in a real-world scenario)
-let tasks = [
-    { id: 1, title: 'Task 1', completed: false },
-    { id: 2, title: 'Task 2', completed: true },
+// let tasks = [
+//     { id: 1, title: 'Task 1', completed: false },
+//     { id: 2, title: 'Task 2', completed: true },
 
-];
+// ];
 
 // Create a new task
 app.post('/tasks', (req, res) => {
