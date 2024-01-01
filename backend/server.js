@@ -10,6 +10,7 @@ function insert (collection) {
         type: "Road Bike", 
         price: 1800
       };
+     
       // Insert the bike record
     collection.insertOne(bike, (err, result) => {
     if (err) {
