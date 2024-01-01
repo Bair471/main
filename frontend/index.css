@@ -8,3 +8,20 @@
     background-color: #005aa0;
     margin-top: 20px;
 }
+
+#menu ul {
+    list-style: none;
+    display: inline-flex;
+    margin-left: 200px;
+}
+
+.BIKESHOP {
+    margin-right: 200px;
+    margin-left: -220px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+li {
+    margin-right: 40px;
+}
