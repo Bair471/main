@@ -1,0 +1,10 @@
+#menu {
+    font-size: 25px;
+    font-family: sans-serif;
+    font-style: normal;
+    border: 1px black solid;
+    padding: 0px 0px 0px 50px;
+    border-radius: 20px;
+    background-color: #005aa0;
+    margin-top: 20px;
+}
