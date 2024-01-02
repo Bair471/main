@@ -15,7 +15,7 @@
     margin-left: 200px;
 }
 
-.BIKESHOP {
+.bikeshop {
     margin-right: 200px;
     margin-left: -220px;
     font-weight: bold;
@@ -25,3 +25,10 @@
 li {
     margin-right: 40px;
 }
+
+.bikes-table {
+    border: 1px solid #ededed;
+    padding: 2em;
+    border-radius: 1px;
+}
+

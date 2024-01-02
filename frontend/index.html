@@ -17,10 +17,29 @@
             </ul>
         </nav>
     </div>
+    <div class="bikes-action-wrapper">
+        <a href="../add-bike/add-bike.html" class="add-new-bike-link">Add new bike</a>
+    </div>
 
-    <input type="text" id="info">
-    <input type="text" id="brand">
-    <button onclick="handleSave()">SAVE</button>
+    <div class="bikes-table-wrapper">
+        <table id="bikes" class="bikes-table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="bikes-body">
+            </tbody>
+        </table>
+    </div>
+    
+   
+    
     <script src="index.js"></script>
 </body>
 </html>
