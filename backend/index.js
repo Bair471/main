@@ -1,119 +1,93 @@
+// express app
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { connectTodb, getDb } = require('./db');
-const ObjectId = require('mongodb').ObjectId;
-const app = express();
-const port = 8080;
-app.use(express.json());
-app.use(cors());
+const { MongoClient, ObjectId } = require('mongodb');
+require('dotenv').config();
 
-// Middleware to parse JSON in request bodies
+const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
-// In-memory data store (replace with a database in a real-world scenario)
-// let tasks = [
-//     { id: 1, title: 'Task 1', completed: false },
-//     { id: 2, title: 'Task 2', completed: true },
+const mongoConnectionString = process.env.MONGO_CONNECTION_STRING;
 
-// ];
-
-// Create a new task
-app.post('/tasks', (req, res) => {
-    const { title, completed } = req.body;
-    const newTask = { id: tasks.length + 1, title, completed };
-    tasks.push(newTask);
-    res.json(newTask);
-});
-
-app.post('/info', (req, res) => {
-    const { information } = req.body;
-    console.log(information);
-    connectTodb((err) => {
-        if(!err) {
-            // app.listen(PORT, (err) => {
-            //     err? console.log(err) : console.log(`listening port ${PORT}`);
-            // });
-            db = getDb();
-            const collection = db.collection(`data`)
-            insert(collection, req.body);
-            // getAll(data)
-            // updateBike(data, '65900fc283af9b00630af811');
-        } else {
-            console.log(`DB connection error: ${err}`);
-        }
-    });
-    res.json(`ok`)
-})
-function insert (collection, bike) {
-    
-      // Insert the bike record
-    collection.insertOne(bike, (err, result) => {
-    if (err) {
-      console.error("Error inserting record:", err);
-    } else {
-      console.log("Bike record added:", result);
-    }
-  });
-}
-
-app.post('/abc', (req, res) => {
+// CREATE
+app.post('/api/bikes', async (req, res) => {
     const bike = req.body;
-    connectTodb((err) => {
-        if(!err) {
-            // app.listen(PORT, (err) => {
-            //     err? console.log(err) : console.log(`listening port ${PORT}`);
-            // });
-            db = getDb();
-            const collection = db.collection(`data`)
-            insert(collection, bike);
-            // getAll(data)
-            // updateBike(data, '65900fc283af9b00630af811');
-        } else {
-            console.log(`DB connection error: ${err}`);
+
+    // Validation
+    if (!bike.brand || !bike.model || !bike.year || !bike.price) {
+        res.status(400).send('Missing required fields: brand, model, year (number), price (decimal)');
+        return;
+    }
+
+    const client = await MongoClient.connect(mongoConnectionString);
+    const db = client.db('bikes');
+    const result = await db.collection('data').insertOne({
+        brand: bike.brand,
+        model: bike.model,
+        year: parseInt(bike.year),
+        price: parseFloat(bike.price)
+    });
+
+    res.send(result);
+});
+
+// GET
+app.get('/api/bikes', async (req, res) => {
+    const client = await MongoClient.connect(mongoConnectionString);
+    const db = client.db('bikes');
+    const result = await db.collection('data').find().toArray();
+
+    res.send(result);
+});
+
+// GET SINGLE
+app.get('/api/bikes/:id', async (req, res) => {
+    const id = req.params.id;
+    const client = await MongoClient.connect(mongoConnectionString);
+    const db = client.db('bikes');
+
+    const result = await db.collection('data').findOne({ _id: new ObjectId(id) });
+
+    res.send(result);
+});
+
+// UPDATE
+app.put('/api/bikes/:id', async (req, res) => {
+    const id = req.params.id;
+    const bike = req.body;
+
+    // Validation
+    if (!bike.brand || !bike.model || isNaN(bike.year) || isNaN(bike.price)) {
+        res.status(400).send('Missing required fields: brand, model, year (number), price (decimal)');
+        return;
+    }
+
+    const client = await MongoClient.connect(mongoConnectionString);
+    const db = client.db('bikes');
+    const result = await db.collection('data').updateOne({ _id: new ObjectId(id) }, {
+        $set: {
+            brand: bike.brand,
+            model: bike.model,
+            year: parseInt(bike.year),
+            price: parseFloat(bike.price)
         }
     });
-})
 
-// Get all tasks
-app.get('/gettasks', (req, res) => {
-    res.json(tasks);
+    res.send(result);
 });
 
-// Get a specific task by ID
-app.get('/tasks/:id', (req, res) => {
-    const taskId = parseInt(req.params.id);
-    const task = tasks.find(t => t.id === taskId);
+// DELETE
+app.delete('/api/bikes/:id', async (req, res) => {
+    const id = req.params.id;
 
-    if (task) {
-        res.json(task);
-    } else {
-        res.status(404).json({ error: 'Task not found' });
-    }
+    const client = await MongoClient.connect(mongoConnectionString);
+    const db = client.db('bikes');
+    const result = await db.collection('data').deleteOne({ _id: new ObjectId(id) });
+
+    res.send(result);
 });
 
-// Update a task by ID
-app.put('/tasks/:id', (req, res) => {
-    const taskId = parseInt(req.params.id);
-    const { title, completed } = req.body;
-    const index = tasks.findIndex(t => t.id === taskId);
-
-    if (index !== -1) {
-        tasks[index] = { id: taskId, title, completed };
-        res.json(tasks[index]);
-    } else {
-        res.status(404).json({ error: 'Task not found' });
-    }
-});
-
-// Delete a task by ID
-app.delete('/tasks/:id', (req, res) => {
-    const taskId = parseInt(req.params.id);
-    tasks = tasks.filter(t => t.id !== taskId);
-    res.json({ message: 'Task deleted successfully' });
-});
-
-// Start the server
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+const port = 8000;
+app.listen(port, () => console.log(`Server listening on port ${port}!`));

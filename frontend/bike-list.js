@@ -1,11 +1,11 @@
-// get the able body
+// get the table body
 const bikesBody = document.getElementById('bikes-body');
 
 // get the bike-list from the backend
 fetch('http://localhost:8000/api/bikes')
     .then(response => response.json())
-    .then(bikes => {(b)
-        // loop through the bike-list 
+    .then(bikes => {
+        // loop through the bike-list
         bikes.forEach(bike => {
             // create a new row
             const row = document.createElement('tr');
@@ -68,5 +68,3 @@ fetch('http://localhost:8000/api/bikes')
             bikesBody.appendChild(row);
         });
     });
-
-
