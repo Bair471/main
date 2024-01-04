@@ -105,7 +105,7 @@ body {
 
 }
 
-.BIKESHOP {
+.bikeshop {
     margin-right: 200px;
     margin-left: -220px;
     font-weight: bold;
@@ -131,7 +131,8 @@ table {
     border: 16px #005aa0 solid;
     border-radius: 20px;
     border-collapse: separate;
-    margin-left: 210px;
+    margin-left: 130px;
+    margin-top: 80px;
   }
 
 th, td {
