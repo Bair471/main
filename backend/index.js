@@ -116,3 +116,24 @@ app.listen(port, () => console.log(`Server listening on port ${port}!`));
 //     res.send('result');
 // });
 
+
+
+app.get('/api/bikes/:id', async (req, res) => {
+    const id = req.params.id;
+    const client = await MongoClient.connect(mongoConnectionString);
+    const db = client.db('bikes');
+
+    const result = await db.collection('data').findOne({ _id: new ObjectId(id) });
+
+    res.send(result);
+});
+
+app.get('/app/bikes/:id', async (req, res) => {
+    const id = req.params.id;
+    const client = await MongoClient.connect(mongoConnectionString);
+    const db = client.db('bikes');
+
+    const result = await db.collection('data').findOne({ _id: new ObjectId(id) });
+
+    res.send(result);
+})
