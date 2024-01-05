@@ -94,7 +94,7 @@ body {
     border-radius: 20px;
     background-color: #005aa0;
     margin-top: 20px;
-    
+    width: 100%;
 
 }
 
@@ -125,7 +125,7 @@ li {
 
 table {
     font-family: Arial, sans-serif;
-    font-size: 25px;
+    font-size: 13px;
     width: 80%;
     background: #005aa0;
     border: 16px #005aa0 solid;
@@ -159,3 +159,4 @@ input[type="text"] {
     font-size: 25px;
     
   }
+

@@ -68,3 +68,4 @@ fetch('http://localhost:8000/api/bikes')
             bikesBody.appendChild(row);
         });
     });
+

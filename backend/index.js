@@ -97,22 +97,22 @@ app.listen(port, () => console.log(`Server listening on port ${port}!`));
 
 
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const {MongoClient, ObjectId} = require('Mongodb');
+// const express = require('express');
+// const bodyParser = require('body-parser');
+// const cors = require('cors');
+// const {MongoClient, ObjectId} = require('Mongodb');
 
-const app = express();
-app.use(cors());
-app.use(bodyParser.json())
+// const app = express();
+// app.use(cors());
+// app.use(bodyParser.json())
 
-const mongoConnectionString = process.env.MONGO_CONNECTION_STRING;
+// const mongoConnectionString = process.env.MONGO_CONNECTION_STRING;
 
-app.get('/app/bikes', (req, res) => {
-    const client = await MongoClient.connect(mongoConnectionString);
-    const db = client.db('bikes');
-    const result = await db.collection('data').find().toArray();
+// app.get('/app/bikes', (req, res) => {
+//     const client = await MongoClient.connect(mongoConnectionString);
+//     const db = client.db('bikes');
+//     const result = await db.collection('data').find().toArray();
 
-    res.send('result');
-});
+//     res.send('result');
+// });
 
