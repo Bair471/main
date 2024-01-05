@@ -137,3 +137,46 @@ app.get('/app/bikes/:id', async (req, res) => {
 
     res.send(result);
 })
+
+
+app.get('/app/bikes/:id', async (req, res) =>{
+    const id = req.params.id;
+    const client = await MongoClient.connect(mongoConnectionString);
+    const db = client.db('bikes');
+
+    const result = await db.collection('data').findOne({ _id: new ObjectId(id) });
+
+    res.send(result);
+})
+
+
+app.get('/app/bikes/:id', async (req, res) => {
+    const id = req.params.id;
+    const client = await MongoClient.connect(mongoConnectionString);
+    const db = client.db('biles');
+
+    const result = await db.collection('data').findOne({ _id: new ObjectId(id) });
+
+    res.send(result);
+})
+
+
+app.delete('/api/bikes/:id', async (req, res) => {
+    const id = req.params.id;
+
+    const client = await MongoClient.connect(mongoConnectionString);
+    const db = client.db('bikes');
+    const result = await db.collection('data').deleteOne({ _id: new ObjectId(id) });
+
+    res.send(result);
+});
+
+
+app.delete('/app/bikes/:id', async (req, res) => {
+    const id = req.params.id;
+    const client = await MongoClient.connect(mongoConnectionString);
+    const db = client.db('bikes');
+    const result = await db.collection('data').deleteOne({ _id: ObjectId(id) });
+
+    res.send(result);
+})
