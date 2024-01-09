@@ -112,6 +112,33 @@ fetch('http://localhost:8000/api/bikes')
             window.location.href = `../edit-bike/edit-bike.html?id${bike._id}`;
         })
 
-  })
-})
-    
+        const deleteButton = document.createElement('button');
+        deleteButton.innerText = 'Delete';
+        deleteButton.className = 'btn btn-danger';
+        deleteButton.addEventListener('click', () => {
+            if (confirm(`Are you sure you want to delete ${bike.brand} ${bike.model}?`) === true) {
+            // delete the bike
+            fetch(`http://localhost:8000/api/bikes/${bike._id}`, {
+            method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(() => {
+            // remove the row from the table
+                row.remove();
+            });
+        }
+    }); 
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'btn btn-danger';
+        deleteButton.innerText = 'Delete';
+        deleteButton.addEventListener('click', () => {
+            if(confirm(`Are you sure you want to delete ${bike.brand}, ${bike.model}?`) === true) {
+                fetch(`http://localhost:8000/api/bikes/${bike._id}`, {
+                    method: 'DELETE'
+                })
+                .then(respones => respones.json())
+                .then(() => {
+                    row.remove();
+                });
+            }
+        });
