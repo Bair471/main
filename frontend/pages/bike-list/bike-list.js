@@ -1,5 +1,3 @@
-// const { response } = require("express");
-
 // // get the table body
 // const bikesBody = document.getElementById('bikes-body');
 
@@ -74,8 +72,6 @@
 
     
 
-const { response } = require("express");
-
 const bikesbody = document.getElementById('bikes-body');
 
 fetch('http://localhost:8000/api/bikes')
@@ -94,7 +90,22 @@ fetch('http://localhost:8000/api/bikes')
         year.innerText = bike.year;
         brand.innerText = bike.brand;
 
-    })
+        const editButton = document.createElement('button');
+        editButton.className = 'btn btn-primary';
+        editButton.innerText = 'Edit';
+        editButton.addEventListener('click', () => {
+                // redirect to the edit page
+        window.location.href = `../edit-bike/edit-bike.html?id=${bike._id}`;
+        });
 
-    
+        const editButton = document.createElement('button');
+        editButton.className = 'btn btn-primary';
+        editButton.innerText = 'Edit';
+        editButton.addEventListener('click' () => {
+            windwow.location.href = `../edit-bike/edit-bike.html?id=${bike._id}`;
+        });
+
+
+  })
 })
+    
