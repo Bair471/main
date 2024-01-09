@@ -69,3 +69,14 @@ fetch('http://localhost:8000/api/bikes')
         });
     });
 
+
+    const bikesBody = document.getElementById('bikes-body');
+
+    fetch('https://localhost:8000/api/bikes')
+    .then(response => response.json())
+    .then(bikes => {
+        bikes.forEach(bike => {
+
+            const row = documet.getElementById('tr')
+        })
+    })
