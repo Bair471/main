@@ -92,19 +92,25 @@ fetch('http://localhost:8000/api/bikes')
 
         const editButton = document.createElement('button');
         editButton.className = 'btn btn-primary';
-        editButton.innerText = 'Edit';
+        editButton.innerText = 'Edit';   
         editButton.addEventListener('click', () => {
-                // redirect to the edit page
-        window.location.href = `../edit-bike/edit-bike.html?id=${bike._id}`;
+        // redirect to the edit page
+            window.location.href = `../edit-bike/edit-bike.html?id=${bike._id}`;
         });
 
         const editButton = document.createElement('button');
         editButton.className = 'btn btn-primary';
         editButton.innerText = 'Edit';
-        editButton.addEventListener('click' () => {
-            windwow.location.href = `../edit-bike/edit-bike.html?id=${bike._id}`;
+        editButton.addEventListener('clicl', () => {
+            window.location.href = `../edit-bike/edit-bike.html?id${bike._id}`;
         });
 
+        const editButton = document.createElement('button');
+        editButton.className = 'btn btn-primary';
+        editButton.innerText = 'Edit';
+        editButton.addEventListener('click', () => {
+            window.location.href = `../edit-bike/edit-bike.html?id${bike._id}`;
+        })
 
   })
 })
