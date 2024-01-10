@@ -81,6 +81,7 @@ fetch('http://localhost:8000/api/bikes')
             const model = document.createElement('td');
             const year = document.createElement('td');
             const id = document.createElement('td');
+            const actions = document.createElement('td')
 
             brand.innerText = bike.brand;
             model.innerText = bike.model;
@@ -94,6 +95,21 @@ fetch('http://localhost:8000/api/bikes')
             editButton.addEventListener('click', () => {
 
                 window.location.href = `../edit-bike/edit-bike.html?${bike._id}`;
+
+
+                actions.appendChild(editButton);
+                actions.appendChild(deleteButton);
+    
+                // append the columns to the row
+                row.appendChild(id);
+                row.appendChild(brand);
+                row.appendChild(model);
+                row.appendChild(year);
+                row.appendChild(price);
+                row.appendChild(actions);
+    
+                // append the row to the table body
+                bikesBody.appendChild(row);
             })
         })
     });
