@@ -93,11 +93,11 @@ fetch('http://localhost:8000/api/bikes')
             editButton.innerText = 'Edit';
             editButton.addEventListener('click', () => {
 
-                window.location.href = `edit-bike/edit-bike.html?${bike._id}`;
+                window.location.href = `../edit-bike/edit-bike.html?${bike._id}`;
             })
         })
-    })
-    
+    });
+           
 
 
 
