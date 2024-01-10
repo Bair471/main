@@ -113,6 +113,40 @@ fetch('http://localhost:8000/api/bikes')
             })
         })
     });
+
+
+
+    const bikesBody = document.getElementById('bikes-body');
+
+    fetch('http://localhost:8000:api/bikes')
+    .then(response => response.json())
+    .then(bikes => {
+        bikes.forEach(bike => {
+            const row = document.createElement('tr');
+            const id = document.createElement('td');
+            const brand = document.createElement('td');
+            const year = document.createElement('td');
+
+
+            id.innerText = bikes._id;
+            brand.innerText = bikes.brand;
+            year.innerTex = bikes.year;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'btn btn-danger';
+            deleteButton.addEventListener('click', () => {
+                if(confirm(`Are you sure you want to delete ${bikes.brand}, ${bikes.model}?`) === true) {
+                    fetch(`http://localhost:8000/api/bikes/${bike._id}`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => response.json())
+                    .then(() => {
+                    row.remove();
+                })
+                }
+            })
+        })
+    })
            
 
 
