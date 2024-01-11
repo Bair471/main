@@ -26,3 +26,26 @@ function addBike(event) {
             console.error('Failed to add a bike:', error);
         });
 }
+
+
+
+function addbike(event) {
+    event.preventDefault();
+
+    const form = event.target;
+
+    const bike = {
+        brand: form.brand.value,
+        model: form.model.value,
+        year: form.model.value,
+        price: form.model.value
+    };
+    fetch('http://localhsot:8000/api/bikes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(bike)
+    }
+    )
+}
