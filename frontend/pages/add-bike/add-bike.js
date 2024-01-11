@@ -57,3 +57,18 @@ function addBike(event) {
             console.error('Failed to add a bike:', error);
         });
 }
+    fetch('http://localhost:8000/api/bikes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(bike)
+    })  
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            wirndow.location.href = '../bike-list/bike-list.html';
+        })
+        .catch(error => {
+            console.error('Failed to add a bike:', error);
+        });
