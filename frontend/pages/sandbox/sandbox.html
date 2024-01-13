@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="word" type="text" /> 
+    <input id="word1" type="checkbox"/>
+    <button onclick="sayHelloWorld()">Button</button>
+    <div id="word3">
+        
+    </div>
+    <form onsubmit="bulka(event)">
+        <input id="info1" type="text"/> 
+        <input id="info2" type="text"/>
+        <input id="info3" type="text"/>
+        <input type="submit"/>
+        
+    </form>
+    <table id="table">
+        <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>salary</td>
+        </tr>
+        <tr>
+            <td>123</td>
+            <td>Bair</td>
+            <td>1000000</td>
+        </tr>
+        <tr>
+            <td>124</td>
+            <td>Mikhail</td>
+            <td>1500000</td>
+        </tr>
+    </table>
+    <input id="word4" type="text"/> <button id="word5">button1</button>
+    <ul id="menu">
+        <li>Milk</li>
+        <li>Juice</li>
+        <li>Bread</li>
+    </ul>
+    <script>
+        function addInfo() {
+            const info1 = document.getElementById('info1');
+            const info2 = document.getElementById('info2');
+            const info3 = document.getElementById('info3');
+            const newTr = document.createElement('tr');
+            const newTd = document.createElement('td');
+            const newTd1 = document.createElement('td');
+            const newTd2 = document.createElement('td');
+            newTd.innerText = info1.value;
+            newTd1.innerText = info2.value;
+            newTd2.innerText = info3.value;
+            newTr.appendChild(newTd);
+            newTr.appendChild(newTd1);
+            newTr.appendChild(newTd2);
+            const table = document.getElementById('table');
+            table.appendChild(newTr);
+
+            
+        }
+        function bulka (event) {
+            event.preventDefault();
+            console.log(`bulka`);
+            addInfo();
+        }
+        document.getElementById('word5').addEventListener('click', addFood);
+        function addFood() {
+            const food = document.getElementById('word4');
+            const newLi2 = document.createElement('li');
+            newLi2.innerText = food.value;
+            const menu = document.getElementById('menu');
+            menu.appendChild(newLi2);
+        }
+        setTimeout(() => {
+            const newLi = document.createElement('li');
+            newLi.innerText = 'Cheese';
+            const menu = document.getElementById('menu');
+            menu.appendChild(newLi);
+        },2000);
+        
+        function sayHelloWorld() {
+            const word = document.getElementById('word');
+            const word1 = document.getElementById('word1').checked;
+            const word3 = document.getElementById('word3');
+            if(word1 === true) {
+                word3.innerText = word.value;
+            } 
+            else {
+                word3.innerText = 'Pokemon';
+            }
+        }
+    </script>
+</body>
+</html>

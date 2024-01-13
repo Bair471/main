@@ -32,29 +32,32 @@ function addBike(event) {
 function addBike(event)  {
     event.preventDefault();
 
-    const form = evenet.target;
 
     const bike = {
-        brand:form.brand.value,
-        model:form.model.value,
-        year:form.year.value,
-        price:form.year.value
-};
+        // brand:form.brand.value,
+        // model:form.model.value,
+        // year:form.year.value,
+        // price:form.year.value
+        brand: document.getElementById('brand').value,
+        model: document.getElementById('model').value,
+        year: document.getElementById('year').value,
+        price: document.getElementById('price').value
+    };
 
-fetch('http://localhost:8000/api/bikes', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'aplication/json'
-    },
-    body: JSON.stringify(bike)
+    fetch('http://localhost:8000/api/bikes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'aplication/json'
+        },
+        body: JSON.stringify(bike)
 
-})  
-    .then(resposnes => respones.json())
-    .then(result => {
-        console.log(result);
-        window.location.href = '../bike-list/bike-list.html';
-    })
-    .catch(error => {
-        console.error('Failed to add a bike:', error);
-    });
+    })  
+        .then(respones => respones.json())
+        .then(result => {
+            console.log(result);
+            window.location.href = '../bike-list/bike-list.html';
+        })
+        .catch(error => {
+            console.error('Failed to add a bike:', error);
+        });
 }
