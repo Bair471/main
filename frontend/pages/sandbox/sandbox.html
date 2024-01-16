@@ -12,15 +12,16 @@
     <div id="word3">
         
     </div>
-    <form onsubmit="bulka(event)">
-        <input id="info1" type="text"/> 
-        <input id="info2" type="text"/>
-        <input id="info3" type="text"/>
-        <input type="submit"/>
-        
+
+    <form id="form">
+        <input id="info1" type="text" placeholder="id"/> 
+        <input id="info2" type="text" placeholder="name"/>
+        <input id="info3" type="text" placeholder="salary"/>
+        <button type="button" onclick="addPerson()">Addinfo</button>
     </form>
+
     <table id="table">
-        <tr>
+        <tr id="row">
             <td>id</td>
             <td>name</td>
             <td>salary</td>
@@ -43,26 +44,37 @@
         <li>Bread</li>
     </ul>
     <script>
-        function addInfo() {
-            const info1 = document.getElementById('info1');
-            const info2 = document.getElementById('info2');
-            const info3 = document.getElementById('info3');
-            const newTr = document.createElement('tr');
-            const newTd = document.createElement('td');
-            const newTd1 = document.createElement('td');
-            const newTd2 = document.createElement('td');
-            newTd.innerText = info1.value;
-            newTd1.innerText = info2.value;
-            newTd2.innerText = info3.value;
-            newTr.appendChild(newTd);
-            newTr.appendChild(newTd1);
-            newTr.appendChild(newTd2);
-            const table = document.getElementById('table');
-            table.appendChild(newTr);
 
-            
-        }
-        function bulka (event) {
+    document.getElementById('form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+        addPerson();
+    });
+
+    function addPerson() {
+        const id = document.getElementById('info1').value;
+        const name = document.getElementById('info2').value;
+        const salary = document.getElementById('info3').value;
+
+        const table = document.getElementById('table');
+
+        const newRow = document.createElement('tr');
+
+        const newId = document.createElement('td');
+        const newName = document.createElement('td');
+        const newSalary = document.createElement('td');
+
+        newId.innerText = id;
+        newName.innerText = name;
+        newSalary.innerText = salary;
+
+        newRow.appendChild(newId);
+        newRow.appendChild(newName);
+        newRow.appendChild(newSalary);
+
+        table.appendChild(newRow);
+    }
+
+        function bulka(event) {
             event.preventDefault();
             console.log(`bulka`);
             addInfo();
@@ -93,6 +105,38 @@
                 word3.innerText = 'Pokemon';
             }
         }
+
+        
     </script>
 </body>
 </html>
+
+
+document.getElementById('form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+    addPerson();
+});
+
+function addPerson() {
+    const id = document.getElementById('info1').value;
+    const name = document.getElementById('info2').value;
+    const salary = document.getElementById('info3').value;
+
+    const table = document.getElementById('table');
+
+    const newRow = document.createElement('tr');
+
+    const newId = document.createElement('td');
+    const newName = document.createElement('td');
+    const newSalary = document.createElement('td');
+
+    newId.innerText = id;
+    newName.innerText = name;
+    newSalary.innerText = salary;
+
+    newRow.appendChild(newId);
+    newRow.appendChild(newName);
+    newRow.appendChild(newSalary);
+
+    table.appendChild(newRow);
+}

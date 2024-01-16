@@ -34,10 +34,6 @@ function addBike(event)  {
 
 
     const bike = {
-        // brand:form.brand.value,
-        // model:form.model.value,
-        // year:form.year.value,
-        // price:form.year.value
         brand: document.getElementById('brand').value,
         model: document.getElementById('model').value,
         year: document.getElementById('year').value,

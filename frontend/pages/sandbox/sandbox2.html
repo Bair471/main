@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form">
+        <input id="info1" type="text" placeholder="id"/>
+        <input id="info2" type="text" placeholder="name"/>
+        <input id="info3" type="text" placeholder="salary"/>
+        <button id="button" onclick="addPerson()">AddMember</button>
+    </form>
+    <table id="table">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Salary</td>
+        </tr>
+        <tr>
+            <td>111</td>
+            <td>Bair</td>
+            <td>5000000</td>
+        </tr>
+    </table>
+
+    <script>
+        
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+        });
+
+        function addPerson() {
+            const id = document.getElementById('info1').value;
+            const name = document.getElementById('info2').value;
+            const salary = document.getElementById('info3').value;
+
+            const table = document.getElementById('table');
+            const row = document.getElementById('row');
+
+            const newRow = document.createElement('tr');
+            const newId = document.createElement('td');
+            const newName = document.createElement('td');
+            const newSalary = document.createElement('td');
+
+            newId.innerText = id;
+            newSalary.innerText = salary;
+            newName.innerText = name;
+
+            newRow.appendChild(newId);
+            newRow.appendChild(newName);
+            newRow.appendChild(newSalary);
+            table.appendChild(newRow);
+            
+
+        }
+
+    </script>
+</body>
+</html>
