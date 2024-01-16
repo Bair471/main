@@ -140,3 +140,33 @@ function addPerson() {
 
     table.appendChild(newRow);
 }
+
+
+document.getElementById('form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+    addPerson();
+});
+
+function addPerson() {
+    const id = document.getElementById('info1').value;
+    const name = document.getElementById('info2').value;
+    const salary = document.getElementById('info3').value;
+
+    const table = document.getElementById('table');
+
+    const newRow = document.createElement('tr');
+
+    const newId = document.createElement('td');
+    const newName = document.createElement('td');
+    const newSalary = document.createElement('td');
+
+    newId.innerText = id;
+    newName.innerText = name;
+    newSalary.innerText = salary;
+
+    newRow.appendChild(newId);
+    newRow.appendChild(newName);
+    newRow.appendChild(newSalary);
+
+    table.appendChild(newRow);
+}
