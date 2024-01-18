@@ -1,10 +1,10 @@
 function addFood(event) {
-    event.prevenetDefault();
+    event.preventDefault();
 
     const form = event.target;
 
     const food = {
-        brand: form.brand.value
+        brand: form.brand.value,
     };
 
     fetch('http://localhost:8000/api/Food', {
@@ -17,7 +17,6 @@ function addFood(event) {
     .then(response => response.json())
     .then(result => {
         console.log(result);
-        window.location.href = '../SANDBOX/sandbox-list2.html';
     })
     .catch(error => {
         console.log('Failed to add food:', error);

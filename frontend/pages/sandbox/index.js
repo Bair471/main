@@ -10,7 +10,6 @@ app.use(bodyParser.json());
 
 const mongoConnectionString = process.env.MONGO_CONNECTION_STRING;
 
-// CREATE
 app.post('/api/Food', async (req, res) => {
     const food = req.body;
 
@@ -23,7 +22,7 @@ app.post('/api/Food', async (req, res) => {
     const client = await MongoClient.connect(mongoConnectionString);
     const db = client.db('Food');
     const result = await db.collection('data').insertOne({
-        brand: food.brand
+        brand: food.brand,
     });
 
     res.send(result);
@@ -49,27 +48,6 @@ app.get('/api/Food/:id', async (req, res) => {
     res.send(result);
 });
 
-// UPDATE
-app.put('/api/Food/:id', async (req, res) => {
-    const id = req.params.id;
-    const food = req.body;
-
-    // Validation
-    if (!food.brand) {
-        res.status(400).send('Missing required fields: brand, model, year (number), price (decimal)');
-        return;
-    }
-
-    const client = await MongoClient.connect(mongoConnectionString);
-    const db = client.db('Food');
-    const result = await db.collection('data').updateOne({ id: new ObjectId(id) }, {
-        $set: {
-            brand: food.brand,
-        }
-    });
-
-    res.send(result);
-});
 
 
 
