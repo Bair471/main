@@ -1,0 +1,25 @@
+.btn {
+    border: none;
+    color: white;
+    padding: 0.5em 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    margin: 0.5em 0.5em;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.8;
+
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+}
+

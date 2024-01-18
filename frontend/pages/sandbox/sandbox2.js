@@ -14,7 +14,7 @@ function addFood(event) {
     .then(response => response.json())
     .then(result => {
         console.log(result);
-        window.location.href = '../SANDBOX/sandbox.html';
+        window.location.href = '../SANDBOX/sandbox-list2.html';
     })
     .catch(error => {
         console.log('Failed to add food:', error);
