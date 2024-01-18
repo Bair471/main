@@ -9,6 +9,9 @@ function addFood(event) {
 
     fetch('http://localhost:8000/api/Food', {
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(food)
     })
     .then(response => response.json())

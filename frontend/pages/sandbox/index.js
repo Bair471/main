@@ -23,10 +23,7 @@ app.post('/api/Food', async (req, res) => {
     const client = await MongoClient.connect(mongoConnectionString);
     const db = client.db('Food');
     const result = await db.collection('data').insertOne({
-        brand: bike.brand,
-        model: bike.model,
-        year: parseInt(bike.year),
-        price: parseFloat(bike.price)
+        brand: food.brand
     });
 
     res.send(result);
@@ -47,7 +44,7 @@ app.get('/api/Food/:id', async (req, res) => {
     const client = await MongoClient.connect(mongoConnectionString);
     const db = client.db('Food');
 
-    const result = await db.collection('data').findOne({ _id: new ObjectId(id) });
+    const result = await db.collection('data').findOne({ id: new ObjectId(id) });
 
     res.send(result);
 });
@@ -65,12 +62,9 @@ app.put('/api/Food/:id', async (req, res) => {
 
     const client = await MongoClient.connect(mongoConnectionString);
     const db = client.db('Food');
-    const result = await db.collection('data').updateOne({ _id: new ObjectId(id) }, {
+    const result = await db.collection('data').updateOne({ id: new ObjectId(id) }, {
         $set: {
-            brand: bike.brand,
-            model: bike.model,
-            year: parseInt(bike.year),
-            price: parseFloat(bike.price)
+            brand: food.brand,
         }
     });
 
